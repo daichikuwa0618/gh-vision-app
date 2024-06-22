@@ -13,3 +13,14 @@ public struct Repository {
     self.description = description
   }
 }
+
+extension Repository {
+  public static func mock(
+    name: String = "mock-repository",
+    language: String = "Swift",
+    starCount: Int = 0,
+    description: String = "This is mock repository"
+  ) -> Self {
+    .init(name: name, language: language, starCount: starCount, description: description)
+  }
+}
