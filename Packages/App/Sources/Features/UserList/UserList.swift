@@ -59,7 +59,7 @@ public struct UserListScreen: View {
         List {
           ForEach(users) { user in
             WithPerceptionTracking {
-              Text(user.name)
+              UserRow(user: user)
             }
           }
         }
@@ -75,8 +75,10 @@ public struct UserListScreen: View {
 
 #Preview {
   NavigationStack {
-    UserListScreen(store: .init(initialState: UserList.State()) {
-      UserList()
-    })
+    UserListScreen(
+      store: .init(initialState: UserList.State()) {
+        UserList()
+      }
+    )
   }
 }

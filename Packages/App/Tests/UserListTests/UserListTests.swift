@@ -1,6 +1,6 @@
-import Core
 import CommonUI
 import ComposableArchitecture
+import Core
 import XCTest
 
 @testable import UserList
