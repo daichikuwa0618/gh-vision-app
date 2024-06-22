@@ -27,6 +27,28 @@ final class UserListTests: XCTestCase {
       }
     }
   }
+
+  @MainActor
+  func testFailureThenRetrySuccess() async {
+    let store = TestStore(initialState: UserList.State()) {
+      UserList()
+    } withDependencies: {
+      $0.userClient.getUsers = { throw SampleError() }
+    }
+    XCTAssertEqual(store.state.contentState, .loading)
+
+    await store.send(.onAppear)
+    await store.receive(\.usersResponse) {
+      $0.contentState = .failure
+    }
+
+    store.dependencies.userClient.getUsers = { [.mock()] }
+
+    await store.send(.retryTapped)
+    await store.receive(\.usersResponse) {
+      $0.contentState = .success([.mock()])
+    }
+  }
 }
 
 private struct SampleError: Error {}

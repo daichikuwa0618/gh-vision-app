@@ -12,13 +12,14 @@ public struct UserList {
 
   public enum Action {
     case onAppear
+    case retryTapped
     case usersResponse(Result<[User], Error>)
   }
 
   public var body: some ReducerOf<Self> {
     Reduce<State, Action> { state, action in
       switch action {
-      case .onAppear:
+      case .onAppear, .retryTapped:
         return .run { send in
           let users = try await userClient.getUsers()
           await send(.usersResponse(.success(users)))
@@ -62,6 +63,8 @@ public struct UserListScreen: View {
             }
           }
         }
+      } retries: {
+        store.send(.retryTapped)
       }
     }
     .task {
