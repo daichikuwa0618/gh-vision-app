@@ -10,14 +10,17 @@ extension Target {
 }
 
 extension Target.Dependency {
+  static var commonUI: Self { .target(name: "CommonUI") }
   static var composableArchitecture: Self { .product(name: "ComposableArchitecture", package: "swift-composable-architecture") }
   static var core: Self { .product(name: "Core", package: "Core") }
 }
 
 var targets: [Target] = [
+  .target(name: "CommonUI"),
   .feature(
     name: "UserList",
     dependency: [
+      .commonUI,
       .composableArchitecture,
       .core,
     ]
