@@ -1,6 +1,6 @@
 import Foundation
 
-public struct UserDetail {
+public struct UserDetail: Sendable {
   public let name: String
   public let fullName: String
   public let avatarImageURL: URL

@@ -1,8 +1,10 @@
 import Foundation
 
-public struct User {
+public struct User: Hashable, Sendable, Identifiable {
   public let name: String
   public let avatarImageURL: URL
+
+  public var id: String { name }
 
   public init(name: String, avatarImageURL: URL) {
     self.name = name

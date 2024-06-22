@@ -1,12 +1,12 @@
 import SwiftUI
 
-public enum AsyncLoadingState<T> {
+public enum AsyncLoadingState<T: Equatable>: Equatable {
   case loading
   case success(T)
   case failure
 }
 
-public struct AsyncContentView<T, Success: View>: View {
+public struct AsyncContentView<T: Equatable, Success: View>: View {
   let state: AsyncLoadingState<T>
   let success: (T) -> Success
   let onTapRetry: (() -> Void)?
