@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Repository {
+public struct Repository: Sendable {
   public let name: String
   public let language: String
   public let starCount: Int

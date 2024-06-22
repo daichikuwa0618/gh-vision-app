@@ -1,0 +1,16 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Explore Users" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ユーザーの探索"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
