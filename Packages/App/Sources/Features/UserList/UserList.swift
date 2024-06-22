@@ -70,6 +70,7 @@ public struct UserListScreen: View {
     .task {
       await store.send(.onAppear).finish()
     }
+    .navigationTitle(Text("Explore Users", bundle: .module))
   }
 }
 
