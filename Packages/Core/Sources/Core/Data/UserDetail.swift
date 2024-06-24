@@ -1,6 +1,6 @@
 import Foundation
 
-public struct UserDetail: Sendable {
+public struct UserDetail: Hashable, Sendable {
   public let name: String
   public let fullName: String
   public let avatarImageURL: URL
