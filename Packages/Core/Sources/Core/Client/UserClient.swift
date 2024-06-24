@@ -3,7 +3,7 @@ import DependenciesMacros
 import Foundation
 
 @DependencyClient
-public struct UserClient {
+public struct UserClient: Sendable {
   public var getUsers: @Sendable () async throws -> [User]
   public var getUser: @Sendable (_ id: Int) async throws -> UserDetail
   public var getUserRepositories: @Sendable (_ userName: String) async throws -> [Repository]
