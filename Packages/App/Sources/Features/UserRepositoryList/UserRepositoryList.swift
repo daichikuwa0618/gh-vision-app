@@ -62,6 +62,8 @@ public struct UserRepositoryList {
 public struct UserRepositoryListScreen: View {
   let store: StoreOf<UserRepositoryList>
 
+  @State private var isHeaderVisible = true
+
   public init(store: StoreOf<UserRepositoryList>) {
     self.store = store
   }
@@ -70,13 +72,15 @@ public struct UserRepositoryListScreen: View {
     WithPerceptionTracking {
       AsyncContentView(state: store.contentState) { content in
         List {
-          HeaderUserView(user: content.user)
-            .listRowBackground(Color.clear)
-            .listRowInsets(.init(top: 8, leading: 8, bottom: 8, trailing: 8))
+          Section {
+            HeaderUserView(user: content.user)
+              .listRowBackground(Color.clear)
+              .listRowInsets(.init(top: 8, leading: 8, bottom: 8, trailing: 8))
+          }
 
           Section("Repositories") {
             ForEach(content.repositories) { repository in
-              Text(repository.name)
+              RepositoryRow(repository: repository)
             }
           }
         }
