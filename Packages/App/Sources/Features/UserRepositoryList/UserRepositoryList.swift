@@ -70,7 +70,9 @@ public struct UserRepositoryListScreen: View {
     WithPerceptionTracking {
       AsyncContentView(state: store.contentState) { content in
         List {
-          Text(content.user.fullName)
+          HeaderUserView(user: content.user)
+            .listRowBackground(Color.clear)
+            .listRowInsets(.init(top: 8, leading: 8, bottom: 8, trailing: 8))
 
           Section("Repositories") {
             ForEach(content.repositories) { repository in
