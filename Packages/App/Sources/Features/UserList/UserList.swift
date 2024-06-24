@@ -20,6 +20,7 @@ public struct UserList {
     Reduce<State, Action> { state, action in
       switch action {
       case .onAppear, .retryTapped:
+        state.contentState = .loading
         return .run { send in
           let users = try await userClient.getUsers()
           await send(.usersResponse(.success(users)))
@@ -56,10 +57,12 @@ public struct UserListScreen: View {
   public var body: some View {
     WithPerceptionTracking {
       AsyncContentView(state: store.contentState) { users in
-        List {
-          ForEach(users) { user in
-            WithPerceptionTracking {
-              UserRow(user: user)
+        WithPerceptionTracking {
+          List {
+            ForEach(users) { user in
+              WithPerceptionTracking {
+                UserRow(user: user)
+              }
             }
           }
         }
@@ -77,9 +80,12 @@ public struct UserListScreen: View {
 #Preview {
   NavigationStack {
     UserListScreen(
-      store: .init(initialState: UserList.State()) {
-        UserList()
-      }
+      store: .init(
+        initialState: UserList.State(),
+        reducer: {
+          UserList()
+        }
+      )
     )
   }
 }

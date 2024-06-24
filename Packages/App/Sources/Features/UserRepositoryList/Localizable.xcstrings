@@ -1,0 +1,140 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "**%lld** followers" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "**%lld** follower"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "**%lld** followers"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "**%lld** follower"
+                }
+              }
+            }
+          }
+        },
+        "ja" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "**%lld**人のフォロワー"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "**%lld**人のフォロワー"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "**%lld**人のフォロワー"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "**%lld** followings" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "**%lld** following"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "**%lld** followings"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "**%lld** following"
+                }
+              }
+            }
+          }
+        },
+        "ja" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "**%lld**人をフォロー中"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "**%lld**人をフォロー中"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "**%lld**人をフォロー中"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
+    "%lld" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
+    "Repositories" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "リポジトリ"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

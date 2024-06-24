@@ -1,6 +1,6 @@
 import Foundation
 
-public struct UserDetail: Sendable {
+public struct UserDetail: Hashable, Sendable {
   public let name: String
   public let fullName: String
   public let avatarImageURL: URL
@@ -28,7 +28,7 @@ extension UserDetail {
     fullName: String = "Mock User",
     avatarImageURL: URL = .init(string: "https://placehold.jp/150x150.png")!,
     followerCount: Int = 0,
-    followingCount: Int = 0
+    followingCount: Int = 1
   ) -> Self {
     .init(
       name: name,

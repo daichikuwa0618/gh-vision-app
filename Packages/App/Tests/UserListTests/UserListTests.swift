@@ -44,7 +44,9 @@ final class UserListTests: XCTestCase {
 
     store.dependencies.userClient.getUsers = { [.mock()] }
 
-    await store.send(.retryTapped)
+    await store.send(.retryTapped) {
+      $0.contentState = .loading
+    }
     await store.receive(\.usersResponse) {
       $0.contentState = .success([.mock()])
     }

@@ -18,6 +18,15 @@ extension Target.Dependency {
 var targets: [Target] = [
   .target(name: "CommonUI"),
   .feature(
+    name: "UserRepositoryList",
+    dependency: [
+      .commonUI,
+      .composableArchitecture,
+      .core,
+    ]
+  ),
+  .testTarget(name: "UserRepositoryListTests", dependencies: ["UserRepositoryList"]),
+  .feature(
     name: "UserList",
     dependency: [
       .commonUI,
