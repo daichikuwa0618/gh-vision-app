@@ -57,10 +57,12 @@ public struct UserListScreen: View {
   public var body: some View {
     WithPerceptionTracking {
       AsyncContentView(state: store.contentState) { users in
-        List {
-          ForEach(users) { user in
-            WithPerceptionTracking {
-              UserRow(user: user)
+        WithPerceptionTracking {
+          List {
+            ForEach(users) { user in
+              WithPerceptionTracking {
+                UserRow(user: user)
+              }
             }
           }
         }
@@ -78,9 +80,12 @@ public struct UserListScreen: View {
 #Preview {
   NavigationStack {
     UserListScreen(
-      store: .init(initialState: UserList.State()) {
-        UserList()
-      }
+      store: .init(
+        initialState: UserList.State(),
+        reducer: {
+          UserList()
+        }
+      )
     )
   }
 }
