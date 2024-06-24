@@ -17,6 +17,7 @@ public struct UserRepositoryList {
 
   public enum Action {
     case onAppear
+    case retryTapped
     case usersResponse(Result<(user: UserDetail, repositories: [Repository]), Error>)
   }
 
@@ -25,7 +26,8 @@ public struct UserRepositoryList {
       state,
       action in
       switch action {
-      case .onAppear:
+      case .onAppear, .retryTapped:
+        state.contentState = .loading
         return .run { [user = state.user] send in
           async let userTask = userClient.getUser(id: user.id)
           async let repositoriesTask = userClient.getUserRepositories(userName: user.name)
@@ -84,6 +86,8 @@ public struct UserRepositoryListScreen: View {
             }
           }
         }
+      } retries: {
+        store.send(.retryTapped)
       }
     }
     .task {

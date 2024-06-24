@@ -28,6 +28,32 @@ final class UserRepositoryListTests: XCTestCase {
       }
     }
   }
+
+  @MainActor
+  func testFailureThenRetrySuccess() async {
+    let store = TestStore(initialState: UserRepositoryList.State(user: .mock())) {
+      UserRepositoryList()
+    } withDependencies: {
+      $0.userClient.getUser = { @Sendable _ in throw SampleError() }
+      $0.userClient.getUserRepositories = { @Sendable _ in throw SampleError() }
+    }
+    XCTAssertEqual(store.state.contentState, .loading)
+
+    await store.send(.onAppear)
+    await store.receive(\.usersResponse) {
+      $0.contentState = .failure
+    }
+
+    store.dependencies.userClient.getUser = { @Sendable _ in .mock() }
+    store.dependencies.userClient.getUserRepositories = { @Sendable _ in [.mock()] }
+
+    await store.send(.retryTapped) {
+      $0.contentState = .loading
+    }
+    await store.receive(\.usersResponse) {
+      $0.contentState = .success(.init(user: .mock(), repositories: [.mock()]))
+    }
+  }
 }
 
 private struct SampleError: Error {}
