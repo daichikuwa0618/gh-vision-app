@@ -20,6 +20,7 @@ public struct UserList {
     Reduce<State, Action> { state, action in
       switch action {
       case .onAppear, .retryTapped:
+        state.contentState = .loading
         return .run { send in
           let users = try await userClient.getUsers()
           await send(.usersResponse(.success(users)))
