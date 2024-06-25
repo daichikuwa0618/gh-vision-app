@@ -9,7 +9,10 @@ final class UserRepositoryListTests: XCTestCase {
   @MainActor
   func testOnAppear() async {
     let results: [(Result<Content, Error>, AsyncLoadingState<Content>)] = [
-      (.success(.init(user: .mock(), repositories: [.mock()])), .success(.init(user: .mock(), repositories: [.mock()]))),
+      (
+        .success(.init(user: .mock(), repositories: [.mock()])),
+        .success(.init(user: .mock(), repositories: [.mock()]))
+      ),
       (.failure(SampleError()), .failure),
     ]
 
