@@ -2,6 +2,13 @@
 
 GitHub Repository Viewer App for iOS
 
+## `api.github.com` の OpenAPI スキーマについて
+
+[rest-api-description/descriptions/api.github.com/api.github.com.yaml at main · github/rest-api-description](https://github.com/github/rest-api-description/blob/main/descriptions/api.github.com/api.github.com.yaml) を直接ダウンロードして置いている。
+本来は submodule としたうえで sparse-checkout でファイルを制限したかったが、どちらにしても初回の clone が必要になりリポジトリサイズが巨大なために clone に数分かかるのでこのような形になっている。
+
+問題点として追従が難しいという点がある。
+
 ## 開発全般
 
 ### 開発を進める流れ
