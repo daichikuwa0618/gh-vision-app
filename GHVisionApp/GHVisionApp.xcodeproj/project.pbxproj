@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C9068EBD2C2D0A00000E1553 /* GHVisionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9068EBC2C2D0A00000E1553 /* GHVisionApp.swift */; };
-		C9068EBF2C2D0A00000E1553 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9068EBE2C2D0A00000E1553 /* ContentView.swift */; };
 		C9068EC12C2D0A02000E1553 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9068EC02C2D0A02000E1553 /* Assets.xcassets */; };
 		C9068EC42C2D0A02000E1553 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9068EC32C2D0A02000E1553 /* Preview Assets.xcassets */; };
 		C9068EDA2C2D1A12000E1553 /* Root in Frameworks */ = {isa = PBXBuildFile; productRef = C9068ED92C2D1A12000E1553 /* Root */; };
@@ -18,7 +17,6 @@
 /* Begin PBXFileReference section */
 		C9068EB92C2D0A00000E1553 /* GHVisionApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GHVisionApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9068EBC2C2D0A00000E1553 /* GHVisionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHVisionApp.swift; sourceTree = "<group>"; };
-		C9068EBE2C2D0A00000E1553 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C9068EC02C2D0A02000E1553 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C9068EC32C2D0A02000E1553 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -57,7 +55,6 @@
 			isa = PBXGroup;
 			children = (
 				C9068EBC2C2D0A00000E1553 /* GHVisionApp.swift */,
-				C9068EBE2C2D0A00000E1553 /* ContentView.swift */,
 				C9068EC02C2D0A02000E1553 /* Assets.xcassets */,
 				C9068EC22C2D0A02000E1553 /* Preview Content */,
 			);
@@ -156,7 +153,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9068EBF2C2D0A00000E1553 /* ContentView.swift in Sources */,
 				C9068EBD2C2D0A00000E1553 /* GHVisionApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
