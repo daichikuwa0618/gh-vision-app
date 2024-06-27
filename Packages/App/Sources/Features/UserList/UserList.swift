@@ -8,6 +8,8 @@ public struct UserList {
   @ObservableState
   public struct State: Equatable {
     var contentState: AsyncLoadingState<[User]> = .loading
+
+    public init() {}
   }
 
   public enum Action {
