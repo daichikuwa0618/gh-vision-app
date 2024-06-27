@@ -13,7 +13,9 @@ extension UserClient: DependencyKey {
 
     return .init(
       getUsers: {
-        let users = try await client.users_sol_list(headers: .init(accept: [.init(contentType: .json)]))
+        let users = try await client.users_sol_list(
+          headers: .init(accept: [.init(contentType: .json)])
+        )
         return try users.ok.body.json.map { user in
           let avatarImageURL = URL(string: user.avatar_url)
           return .init(id: user.id, name: user.login, avatarImageURL: avatarImageURL!)
