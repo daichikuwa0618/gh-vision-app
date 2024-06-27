@@ -78,3 +78,35 @@ App --> CP
 App --> FP
 App --> DP
 ```
+
+この抽象的な設計を、具体的な Package / Module に置き換えると以下のようになる。
+
+```mermaid
+flowchart TD
+
+subgraph X["Xcode Project"]
+App[GHVisionApp.swift]
+end
+
+subgraph CP["Core Package"]
+Client --> Core
+end
+
+subgraph FP["App Package"]
+Root --> UserList
+Root --> UserRepositoryList
+UserList --> CommonUI
+UserRepositoryList --> CommonUI
+end
+
+subgraph DP["GitHubAPI Package"]
+GH[GitHubAPI]
+end
+
+FP --> CP
+FP <-.- 間接的にも依存していない -.-> DP
+GH -- liveValue --> CP
+X --> Root
+X --> GH
+
+```
