@@ -30,7 +30,7 @@ extension UserClient: DependencyKey {
           let avatarImageURL = URL(string: user.avatar_url)
           return .init(
             name: user.login,
-            fullName: user.name ?? "nil",
+            fullName: user.name,
             avatarImageURL: avatarImageURL!,
             followerCount: user.followers,
             followingCount: user.following
@@ -39,7 +39,7 @@ extension UserClient: DependencyKey {
           let avatarImageURL = URL(string: user.avatar_url)
           return .init(
             name: user.login,
-            fullName: user.name ?? "nil",
+            fullName: user.name,
             avatarImageURL: avatarImageURL!,
             followerCount: user.followers,
             followingCount: user.following
@@ -57,13 +57,12 @@ extension UserClient: DependencyKey {
         return try response.ok.body.json
           .filter { !$0.fork }
           .map { repository in
-            // TODO: model の optional を改める
             Repository(
               id: repository.id,
               name: repository.name,
-              language: repository.language ?? "nil lang",
+              language: repository.language,
               starCount: repository.stargazers_count ?? 0,
-              description: repository.description ?? "null desc"
+              description: repository.description
             )
           }
       }
