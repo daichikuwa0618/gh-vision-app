@@ -2,6 +2,12 @@
 
 GitHub Repository Viewer App for iOS
 
+| OS | Video |
+|--|--|
+| iOS | <video width=300 src="https://github.com/daichikuwa0618/gh-vision-app/assets/31601805/56707bc4-0d23-481d-9b05-66433ba6c168"> |
+| iPadOS | <video width=300 src="https://github.com/daichikuwa0618/gh-vision-app/assets/31601805/eaeb4cc2-fcbf-4382-9134-0331d858310d"> |
+| visionOS | <video width=300 src="https://github.com/daichikuwa0618/gh-vision-app/assets/31601805/d98d0974-e9d8-4515-9be0-443f96d2dbad"> |
+
 ## `api.github.com` について
 
 本アプリケーションで利用している API について。
