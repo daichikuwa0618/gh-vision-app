@@ -12,6 +12,7 @@
 		C9068EC12C2D0A02000E1553 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9068EC02C2D0A02000E1553 /* Assets.xcassets */; };
 		C9068EC42C2D0A02000E1553 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9068EC32C2D0A02000E1553 /* Preview Assets.xcassets */; };
 		C9068EDA2C2D1A12000E1553 /* Root in Frameworks */ = {isa = PBXBuildFile; productRef = C9068ED92C2D1A12000E1553 /* Root */; };
+		C999B8182C2D1BEB00531AD4 /* GitHubAPI in Frameworks */ = {isa = PBXBuildFile; productRef = C999B8172C2D1BEB00531AD4 /* GitHubAPI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C999B8182C2D1BEB00531AD4 /* GitHubAPI in Frameworks */,
 				C9068EDA2C2D1A12000E1553 /* Root in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,6 +97,7 @@
 			name = GHVisionApp;
 			packageProductDependencies = (
 				C9068ED92C2D1A12000E1553 /* Root */,
+				C999B8172C2D1BEB00531AD4 /* GitHubAPI */,
 			);
 			productName = GHVisionApp;
 			productReference = C9068EB92C2D0A00000E1553 /* GHVisionApp.app */;
@@ -373,6 +376,10 @@
 		C9068ED92C2D1A12000E1553 /* Root */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Root;
+		};
+		C999B8172C2D1BEB00531AD4 /* GitHubAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GitHubAPI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
