@@ -16,14 +16,18 @@ struct RepositoryRow: View {
 
         Text("\(repository.starCount)")
 
-        Text("/")
+        if let language = repository.language {
+          Text("/")
 
-        Text(repository.language)
+          Text(language)
+        }
       }
 
-      Text(repository.description)
-        .font(.caption)
-        .foregroundStyle(.secondary)
+      if let description = repository.description {
+        Text(description)
+          .font(.caption)
+          .foregroundStyle(.secondary)
+      }
     }
     .multilineTextAlignment(.leading)
   }
