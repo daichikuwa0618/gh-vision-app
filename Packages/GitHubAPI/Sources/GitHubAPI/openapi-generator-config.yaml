@@ -1,0 +1,9 @@
+generate:
+- types
+- client
+accessModifier: internal
+filter:
+  operations:
+    - repos/list-for-user
+    - users/get-by-username
+    - users/list

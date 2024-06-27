@@ -11,9 +11,11 @@ struct HeaderUserView: View {
         .frame(width: 80, height: 80)
 
       VStack(alignment: .leading) {
-        Text(user.fullName)
-          .font(.title2)
-          .frame(maxWidth: .infinity, alignment: .leading)
+        if let fullName = user.fullName {
+          Text(fullName)
+            .font(.title2)
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
 
         Text(user.name)
           .foregroundStyle(.secondary)
