@@ -13,9 +13,14 @@ public struct UserList {
   }
 
   public enum Action {
+    public enum Delegate {
+      case userTapped(User)
+    }
+
     case onAppear
     case retryTapped
     case usersResponse(Result<[User], Error>)
+    case delegate(Delegate)
   }
 
   public var body: some ReducerOf<Self> {
@@ -40,6 +45,9 @@ public struct UserList {
           state.contentState = .failure
           return .none
         }
+
+      case .delegate:
+        return .none
       }
     }
   }
@@ -63,7 +71,12 @@ public struct UserListScreen: View {
           List {
             ForEach(users) { user in
               WithPerceptionTracking {
-                UserRow(user: user)
+                Button {
+                  store.send(.delegate(.userTapped(user)))
+                } label: {
+                  UserRow(user: user)
+                }
+                .buttonStyle(.navigationLink)
               }
             }
           }

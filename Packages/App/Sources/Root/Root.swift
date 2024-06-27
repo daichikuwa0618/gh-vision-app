@@ -29,7 +29,14 @@ public struct Root {
     }
 
     Reduce<State, Action> { state, action in
-      return .none
+      switch action {
+      case let .userList(.delegate(.userTapped(user))):
+        state.path.append(.userRepositoryList(.init(user: user)))
+        return .none
+
+      case .userList, .path:
+        return .none
+      }
     }
     .forEach(\.path, action: \.path)
   }
