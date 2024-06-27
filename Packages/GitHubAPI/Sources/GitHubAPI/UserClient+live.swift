@@ -4,11 +4,18 @@ import Foundation
 import OpenAPIRuntime
 import OpenAPIURLSession
 
-extension UserClient: DependencyKey {
-  public static var liveValue: UserClient {
+extension UserClient {
+  public static func live(token: String?) -> Self {
+    let middlewares: [any ClientMiddleware]
+    if let token {
+      middlewares = [AuthenticationMiddleware(authorizationHeaderFieldValue: token)]
+    } else {
+      middlewares = []
+    }
     let client = Client(
       serverURL: URL(string: "https://api.github.com")!,
-      transport: URLSessionTransport()
+      transport: URLSessionTransport(),
+      middlewares: middlewares
     )
 
     return .init(
