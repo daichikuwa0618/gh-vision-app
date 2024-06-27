@@ -109,7 +109,7 @@ public struct UserRepositoryListScreen: View {
         store.send(.retryTapped)
       }
       .fullScreenCover(item: $store.selectedRepository) { repository in
-        SafariWebView(url: URL(string: "https://apple.com")!)
+        SafariWebView(url: repository.url)
           .ignoresSafeArea()
       }
     }

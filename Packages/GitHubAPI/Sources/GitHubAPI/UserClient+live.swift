@@ -64,7 +64,8 @@ extension UserClient: DependencyKey {
               name: repository.name,
               language: repository.language,
               starCount: repository.stargazers_count ?? 0,
-              description: repository.description
+              description: repository.description,
+              url: URL(string: repository.html_url)!
             )
           }
       }
