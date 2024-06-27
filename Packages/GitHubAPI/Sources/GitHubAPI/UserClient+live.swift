@@ -4,11 +4,18 @@ import Foundation
 import OpenAPIRuntime
 import OpenAPIURLSession
 
-extension UserClient: DependencyKey {
-  public static var liveValue: UserClient {
+extension UserClient {
+  public static func live(token: String?) -> Self {
+    let middlewares: [any ClientMiddleware]
+    if let token {
+      middlewares = [AuthenticationMiddleware(authorizationHeaderFieldValue: token)]
+    } else {
+      middlewares = []
+    }
     let client = Client(
       serverURL: URL(string: "https://api.github.com")!,
-      transport: URLSessionTransport()
+      transport: URLSessionTransport(),
+      middlewares: middlewares
     )
 
     return .init(
@@ -21,9 +28,9 @@ extension UserClient: DependencyKey {
           return .init(id: user.id, name: user.login, avatarImageURL: avatarImageURL!)
         }
       },
-      getUser: { id in
+      getUser: { userName in
         let response = try await client.users_sol_get_hyphen_by_hyphen_username(
-          path: .init(username: "\(id)"),
+          path: .init(username: userName),
           headers: .init(accept: [.init(contentType: .json)])
         )
         let json = try response.ok.body.json
@@ -48,10 +55,10 @@ extension UserClient: DependencyKey {
           )
         }
       },
-      getUserRepositories: { id in
+      getUserRepositories: { userName in
         let response = try await client.repos_sol_list_hyphen_for_hyphen_user(
           .init(
-            path: .init(username: "\(id)"),
+            path: .init(username: userName),
             query: .init(_type: .owner, sort: .updated, per_page: 20),
             headers: .init(accept: [.init(contentType: .json)])
           )
@@ -64,7 +71,8 @@ extension UserClient: DependencyKey {
               name: repository.name,
               language: repository.language,
               starCount: repository.stargazers_count ?? 0,
-              description: repository.description
+              description: repository.description,
+              url: URL(string: repository.html_url)!
             )
           }
       }

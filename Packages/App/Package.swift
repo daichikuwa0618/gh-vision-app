@@ -41,8 +41,11 @@ let targetsExcludingTests = targets.filter { !$0.isTest }
 
 targets.append(
   .target(
-    name: "App",
-    dependencies: targetsExcludingTests.map { .target(name: $0.name) }
+    name: "Root",
+    dependencies: [
+      .composableArchitecture,
+      .core,
+    ] + targetsExcludingTests.map { .target(name: $0.name) }
   )
 )
 
@@ -51,7 +54,7 @@ let package = Package(
   defaultLocalization: "en",
   platforms: [.iOS(.v16)],
   products: [
-    .library(name: "App", targets: ["App"]),
+    .library(name: "Root", targets: ["Root"]),
   ] + targetsExcludingTests
     .map(\.name)
     .map { .library(name: $0, targets: [$0]) },

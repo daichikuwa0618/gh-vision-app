@@ -2,12 +2,38 @@
 
 GitHub Repository Viewer App for iOS
 
-## `api.github.com` の OpenAPI スキーマについて
+## `api.github.com` について
+
+本アプリケーションで利用している API について。
+
+### OpenAPI スキーマについて
 
 [rest-api-description/descriptions/api.github.com/api.github.com.yaml at main · github/rest-api-description](https://github.com/github/rest-api-description/blob/main/descriptions/api.github.com/api.github.com.yaml) を直接ダウンロードして置いている。
 本来は submodule としたうえで sparse-checkout でファイルを制限したかったが、どちらにしても初回の clone が必要になりリポジトリサイズが巨大なために clone に数分かかるのでこのような形になっている。
 
 問題点として追従が難しいという点がある。
+
+### Personal Access Token (PAT) について
+
+Token を指定しない場合、1 時間当たりのレート制限が存在します。
+それを回避するために PAT を指定できるようになっています。
+PAT は `GHVisionApp.swift` の `gitHubPAT` 変数に指定してください。
+
+```diff
+diff --git a/GHVisionApp/GHVisionApp/GHVisionApp.swift b/GHVisionApp/GHVisionApp/GHVisionApp.swift
+index bf83d89..cbff198 100644
+--- a/GHVisionApp/GHVisionApp/GHVisionApp.swift
++++ b/GHVisionApp/GHVisionApp/GHVisionApp.swift
+@@ -13,7 +13,7 @@ struct GHVisionApp: App {
+         ) {
+           Root().transformDependency(\.self) { dependency in
+             // Optional: Put your GitHub PAT here to avoid API rate limit.
+-            let gitHubPAT: String? = nil
++            let gitHubPAT: String? = "github_pat_${your_token}"
+             dependency.userClient = .live(token: gitHubPAT)
+           }
+         }
+```
 
 ## 開発全般
 

@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:GHVisionApp/GHVisionApp.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Packages/App">
    </FileRef>
    <FileRef
