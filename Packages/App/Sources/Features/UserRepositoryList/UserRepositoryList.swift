@@ -9,19 +9,24 @@ public struct UserRepositoryList {
   public struct State: Equatable {
     let user: User
     var contentState: AsyncLoadingState<Content> = .loading
+    var selectedRepository: Repository?
 
     public init(user: User) {
       self.user = user
     }
   }
 
-  public enum Action {
+  public enum Action: BindableAction {
     case onAppear
     case retryTapped
     case usersResponse(Result<(user: UserDetail, repositories: [Repository]), Error>)
+    case repositoryTapped(Repository)
+    case binding(BindingAction<State>)
   }
 
   public var body: some ReducerOf<Self> {
+    BindingReducer()
+
     Reduce<State, Action> {
       state,
       action in
@@ -52,6 +57,13 @@ public struct UserRepositoryList {
           state.contentState = .failure
           return .none
         }
+
+      case let .repositoryTapped(repository):
+        state.selectedRepository = repository
+        return .none
+
+      case .binding:
+        return .none
       }
     }
   }
@@ -62,9 +74,7 @@ public struct UserRepositoryList {
 }
 
 public struct UserRepositoryListScreen: View {
-  let store: StoreOf<UserRepositoryList>
-
-  @State private var isHeaderVisible = true
+  @Perception.Bindable var store: StoreOf<UserRepositoryList>
 
   public init(store: StoreOf<UserRepositoryList>) {
     self.store = store
@@ -84,7 +94,12 @@ public struct UserRepositoryListScreen: View {
             Section("Repositories") {
               ForEach(content.repositories) { repository in
                 WithPerceptionTracking {
-                  RepositoryRow(repository: repository)
+                  Button {
+                    store.send(.repositoryTapped(repository))
+                  } label: {
+                    RepositoryRow(repository: repository)
+                  }
+                  .buttonStyle(.navigationLink)
                 }
               }
             }
@@ -92,6 +107,10 @@ public struct UserRepositoryListScreen: View {
         }
       } retries: {
         store.send(.retryTapped)
+      }
+      .fullScreenCover(item: $store.selectedRepository) { repository in
+        SafariWebView(url: URL(string: "https://apple.com")!)
+          .ignoresSafeArea()
       }
     }
     .task {
