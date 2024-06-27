@@ -21,9 +21,9 @@ extension UserClient: DependencyKey {
           return .init(id: user.id, name: user.login, avatarImageURL: avatarImageURL!)
         }
       },
-      getUser: { id in
+      getUser: { userName in
         let response = try await client.users_sol_get_hyphen_by_hyphen_username(
-          path: .init(username: "\(id)"),
+          path: .init(username: userName),
           headers: .init(accept: [.init(contentType: .json)])
         )
         let json = try response.ok.body.json
@@ -48,10 +48,10 @@ extension UserClient: DependencyKey {
           )
         }
       },
-      getUserRepositories: { id in
+      getUserRepositories: { userName in
         let response = try await client.repos_sol_list_hyphen_for_hyphen_user(
           .init(
-            path: .init(username: "\(id)"),
+            path: .init(username: userName),
             query: .init(_type: .owner, sort: .updated, per_page: 20),
             headers: .init(accept: [.init(contentType: .json)])
           )

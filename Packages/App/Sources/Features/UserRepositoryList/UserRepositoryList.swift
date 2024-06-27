@@ -29,7 +29,7 @@ public struct UserRepositoryList {
       case .onAppear, .retryTapped:
         state.contentState = .loading
         return .run { [user = state.user] send in
-          async let userTask = userClient.getUser(id: user.id)
+          async let userTask = userClient.getUser(userName: user.name)
           async let repositoriesTask = userClient.getUserRepositories(userName: user.name)
           let response = try await (userTask, repositoriesTask)
           await send(.usersResponse(.success(response)))
